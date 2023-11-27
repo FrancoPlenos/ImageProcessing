@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using AForge.Video;
+using AForge.Video.DirectShow;
 
 namespace ImageProcessing
 {
@@ -9,6 +11,8 @@ namespace ImageProcessing
         private Bitmap imageA; // background image
         private Bitmap imageB; // greenscreen-ed image
         private Bitmap resultImage; // subtracted image
+        private FilterInfoCollection videoDevices;
+        private VideoCaptureDevice videoSource;
 
         public Subtraction()
         {
@@ -16,6 +20,7 @@ namespace ImageProcessing
             DoubleBuffered = true;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormClosing += Subtraction_FormClosing;
+            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -100,5 +105,55 @@ private void btnSubtract_Click(object sender, EventArgs e)
     pbSubtracted.Image = resultImage;
 }
 
+        private void btnOpenWB_Click(object sender, EventArgs e)
+        {
+            if (videoDevices.Count == 0)
+            {
+                MessageBox.Show("No webcam detected.");
+                return;
+            }
+
+            videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
+            videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
+            videoSource.Start();
+        }
+
+        private void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            pbGreen.Image = (Bitmap)eventArgs.Frame.Clone();
+        }
+
+        private void YourForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (videoSource != null && videoSource.IsRunning)
+            {
+                videoSource.SignalToStop();
+                videoSource.WaitForStop();
+            }
+        }
+
+        private void btnCloseWB_Click(object sender, EventArgs e)
+        {
+            if (videoSource != null && videoSource.IsRunning)
+            {
+                videoSource.SignalToStop();
+                videoSource.WaitForStop();
+                pbGreen.Image = null;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            pbGreen.Image = null;
+            pbBackground.Image = null;
+            pbSubtracted.Image = null;
+
+            if (videoSource != null && videoSource.IsRunning)
+            {
+                videoSource.SignalToStop();
+                videoSource.WaitForStop();
+                pbGreen.Image = null;
+            }
+        }
     }
 }

@@ -35,6 +35,9 @@
             this.btnLoadGreen = new System.Windows.Forms.Button();
             this.btnLoadBG = new System.Windows.Forms.Button();
             this.btnSubtract = new System.Windows.Forms.Button();
+            this.btnOpenWB = new System.Windows.Forms.Button();
+            this.btnCloseWB = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSubtracted)).BeginInit();
@@ -107,11 +110,44 @@
             this.btnSubtract.UseVisualStyleBackColor = true;
             this.btnSubtract.Click += new System.EventHandler(this.btnSubtract_Click);
             // 
+            // btnOpenWB
+            // 
+            this.btnOpenWB.Location = new System.Drawing.Point(1004, 12);
+            this.btnOpenWB.Name = "btnOpenWB";
+            this.btnOpenWB.Size = new System.Drawing.Size(140, 44);
+            this.btnOpenWB.TabIndex = 7;
+            this.btnOpenWB.Text = "Open Webcam";
+            this.btnOpenWB.UseVisualStyleBackColor = true;
+            this.btnOpenWB.Click += new System.EventHandler(this.btnOpenWB_Click);
+            // 
+            // btnCloseWB
+            // 
+            this.btnCloseWB.Location = new System.Drawing.Point(1150, 12);
+            this.btnCloseWB.Name = "btnCloseWB";
+            this.btnCloseWB.Size = new System.Drawing.Size(140, 44);
+            this.btnCloseWB.TabIndex = 8;
+            this.btnCloseWB.Text = "Close Webcam";
+            this.btnCloseWB.UseVisualStyleBackColor = true;
+            this.btnCloseWB.Click += new System.EventHandler(this.btnCloseWB_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(159, 12);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(140, 44);
+            this.btnClear.TabIndex = 9;
+            this.btnClear.Text = "Clear Images";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Subtraction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1310, 672);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnCloseWB);
+            this.Controls.Add(this.btnOpenWB);
             this.Controls.Add(this.btnSubtract);
             this.Controls.Add(this.btnLoadBG);
             this.Controls.Add(this.btnLoadGreen);
@@ -137,5 +173,8 @@
         private System.Windows.Forms.Button btnLoadGreen;
         private System.Windows.Forms.Button btnLoadBG;
         private System.Windows.Forms.Button btnSubtract;
+        private System.Windows.Forms.Button btnOpenWB;
+        private System.Windows.Forms.Button btnCloseWB;
+        private System.Windows.Forms.Button btnClear;
     }
 }
