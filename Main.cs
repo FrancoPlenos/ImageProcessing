@@ -21,6 +21,7 @@ namespace ImageProcessing
             InitializeComponent();
             DoubleBuffered = true;
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormClosing += Subtraction_FormClosing;
         }
 
         private bool CheckLoaded()
@@ -99,6 +100,10 @@ namespace ImageProcessing
 
             Subtraction subtractionForm = new Subtraction();
             subtractionForm.Show();
+        }
+        private void Subtraction_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
     }
