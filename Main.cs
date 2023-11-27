@@ -20,6 +20,7 @@ namespace ImageProcessing
         {
             InitializeComponent();
             DoubleBuffered = true;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private bool CheckLoaded()
@@ -91,5 +92,14 @@ namespace ImageProcessing
             int[] data = Histogram.Grey(proccesed);
             Histogram.Draw(g, pnlHistogram.Size, data);
         }
+
+        private void subtractionTingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Subtraction subtractionForm = new Subtraction();
+            subtractionForm.Show();
+        }
+
     }
 }

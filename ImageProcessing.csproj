@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filter.cs" />
+    <Compile Include="Subtraction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Subtraction.Designer.cs">
+      <DependentUpon>Subtraction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Histogram.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -70,6 +76,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Subtraction.resx">
+      <DependentUpon>Subtraction.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
